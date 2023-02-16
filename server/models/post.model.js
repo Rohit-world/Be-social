@@ -26,6 +26,10 @@ const postScema=mongoose.Schema({
         type:Array
 
     }
+    ,username:{
+        type:String,
+        require:true
+    }
 },{timeStamps:true})
 
 const PostModel=mongoose.model("post",postScema)
