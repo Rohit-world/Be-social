@@ -1,7 +1,5 @@
 
-
 const { default: mongoose } = require("mongoose");
-
 const postScema=mongoose.Schema({
     title:{
        require:true,
