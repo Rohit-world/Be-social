@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3002
+const cors=require("cors")
 
 
 const {connection}=require("./config/database")
@@ -10,6 +11,9 @@ const{PostRoute}=require("./routes/posts.route")
 
 
 app.use(express.json())
+app.use(cors({
+    origin:"*"
+}))
 
 
 app.use("/auth",UserRoute)

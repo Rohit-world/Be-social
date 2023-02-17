@@ -1,12 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import Navbar from './components/navbar'
+import AllRoutes from './Routes/allRoutes'
+
 
 function App() {
   
 
   return (
    <div>
+    <Navbar/>
+    <AllRoutes/>
    </div>
   )
 }
