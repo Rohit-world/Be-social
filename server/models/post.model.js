@@ -3,9 +3,7 @@ const { default: mongoose } = require("mongoose");
 const postScema=mongoose.Schema({
     title:{
        require:true,
-       type: String,
-       unique:true
-
+       type: String
     },
     description:{
         require:true,
@@ -14,7 +12,6 @@ const postScema=mongoose.Schema({
     },
     photo:{
         require:false,
-       
         type:String
 
     },
@@ -27,8 +24,12 @@ const postScema=mongoose.Schema({
     ,username:{
         type:String,
         require:true
+    },
+    postTime:{
+        type:String,
+        default:Date.now()
     }
-},{timeStamps:true})
+})
 
 const PostModel=mongoose.model("post",postScema)
 module.exports={PostModel}
