@@ -5,6 +5,7 @@ import BaseUrl from "../../server.url";
 import Crousel from "../components/crousel";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import GridComponent from "../components/grid";
 
 
 const Dashboard = () => {
@@ -47,28 +48,8 @@ console.log(Blogs)
 <Box><Crousel/></Box>
 
 <Box mt={4} padding="2%" backgroundColor="gray.100" color="green" ><Heading>Blogs/Articles</Heading></Box>
+{Blogs[0] && <GridComponent data={Blogs}/>}
 
-<Box mt={4} display="grid" gridTemplateColumns="repeat(3,1fr)" gap={5} >
-
-
-{Blogs[0] && Blogs.map((ele)=>
-  <Box _hover={{backgroundColor:"gray.100"}}  cursor="pointer" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" borderRadius="10px" > 
-
-<img onClick={()=>navigate("/post")} style={{borderRadius:"10px"}} src={ele.photo} alt="" />
-<Box padding="4%">
-<Text  onClick={()=>navigate("/post")}fontSize="1.5vw"  fontWeight="bold" color="orange.900"> {ele.title.slice(0,30)}...  </Text>
-
-<Box width="20%">
-  <Link to={`/post/user/${ele.username}`}>
-<Text _hover={{color:"blue",textDecoration:"none"}} textDecoration="underline" color="blueviolet" align="start">@{ele.username}</Text>
-</Link>
-</Box>
-
-<Text onClick={()=>navigate("/post")} color="gray.600" align="start">{ele.description.slice(0,340)}  ...........</Text>
-</Box>
-</Box>
-)}
-</Box>
 
  </Box>
   );

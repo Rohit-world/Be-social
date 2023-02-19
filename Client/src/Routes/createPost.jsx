@@ -23,7 +23,7 @@ const CreatePost = () => {
 
 
   function PassedValidationCheck() {
-    if (!base64Image || !postData.title || !postData.description) {
+    if (!postData.photo|| !postData.title || !postData.description) {
       Toast({
         title: "Please Give all the Details",
         status: "info",
@@ -53,7 +53,13 @@ setloading(true)
             username:"vector",
             postTime:Date.now(),category:["life","photography"]
             }).then((res)=>{
-              console.log(res)
+             if(res.data){
+              Toast({
+                title:"Post added Successfully",
+                status:"success",
+                position:"top"
+              })
+             }
               setloading(false)
             }).catch((err)=>{
               console.log("errir",err)
