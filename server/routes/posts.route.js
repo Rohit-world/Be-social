@@ -78,16 +78,15 @@ PostRoute.get("/:id", async (req, resp) => {
 
 PostRoute.get("/", async (req, resp) => {
   const username = req.query.user;
-  console.log(username)
   const categoryName = req.query.cat;
   var posts;
   try {
     if (username) {
-      posts = await PostModel.find({ username });
+      posts = await PostModel.find({ username }).sort({'postTime': 'desc'})
     } else if (categoryName) {
-      posts = await PostModel.find({category: { $in: [categoryName]}})
+      posts = await PostModel.find({category: { $in: [categoryName]}}).sort({'postTime': 'desc'})
     }else{
-        posts =await PostModel.find()
+        posts =await PostModel.find().sort({'postTime': 'desc'})
     }
 
     resp.status(200).json(posts);

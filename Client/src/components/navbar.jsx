@@ -1,6 +1,7 @@
 import { Avatar, Box ,Menu,MenuButton,MenuItem,MenuList,useMediaQuery,IconButton, Text } from '@chakra-ui/react';
 import { Link,useLocation } from 'react-router-dom';
 import React from 'react';
+import NavLogo from "../assets/logo.png"
 
 
 
@@ -12,10 +13,10 @@ const location=useLocation()
     const [isLargerThan500] = useMediaQuery('(min-width: 500px)')
     const [isSmallerThan500]=useMediaQuery('(max-width: 500px)')
     return (
-       <Box>
+       <Box mb="10px">
 {  isLargerThan500 && 
     <Box shadow="base" paddingY="1%" paddingX="2%" alignContent="center"alignItems="center" maxH="20vh" display="flex" justifyContent="space-between">
-               <Box > <img width="100vw" src="https://i.ibb.co/02gQmNN/580b57fcd9996e24bc43c529.png" alt="580b57fcd9996e24bc43c529" border="0"></img></Box>
+               <Box > <img width="90px" src={NavLogo} alt="580b57fcd9996e24bc43c529" border="0"></img></Box>
                <Box fontSize="large" fontWeight="bold" display="flex" gap="10vw" >
                    <Link><Text color={location.pathname=="/" && "green"} >Home</Text></Link>
                    <Link>Blog</Link>
@@ -60,7 +61,7 @@ const location=useLocation()
           
 
           <Box>
-          <img width="100vw" src="https://i.ibb.co/02gQmNN/580b57fcd9996e24bc43c529.png" alt="580b57fcd9996e24bc43c529" border="0"></img>
+          <img width="100vw"src={NavLogo} border="0"></img>
           </Box>
 
           <Box><Avatar></Avatar></Box>
