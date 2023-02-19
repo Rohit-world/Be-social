@@ -18,7 +18,8 @@ import resizeImage from "../js/ResizeImage";
 const CreatePost = () => {
   const Toast = useToast();
   const [base64Image, setbase64Image] = useState("");
-  const [postData, setpostdata] = useState({ title: "", description: "" });
+  const [postData, setpostdata] = useState({ title: "", description: "",photo:"" });
+  const [loading,setloading]=useState(false)
 
 
   function PassedValidationCheck() {
@@ -46,16 +47,22 @@ const CreatePost = () => {
     if (PassedValidationCheck()) {
 
         try{
-
+setloading(true)
             axios.post(`${BaseUrl}/post`,{
             ...postData,
-            photo:base64Image,
             username:"vector",
             postTime:Date.now(),category:["life","photography"]
-            }).then((res)=>console.log(res)).catch((err)=>console.log("errir",err))
+            }).then((res)=>{
+              console.log(res)
+              setloading(false)
+            }).catch((err)=>{
+              console.log("errir",err)
+              setloading(false)
+            })
 
         }catch(err){
-
+console.log(err)
+setloading(false)
         }
 
     } else {
@@ -63,18 +70,20 @@ const CreatePost = () => {
     }
   }
 
-  function handleImageChange(e) {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.addEventListener("load", async() => {
-      setbase64Image(reader.result);
-      resizeImage(base64Image, 1000, 1000).then((result) => {
-        console.log(result);
-    });
+  // function handleImageChange(e) {
+  //   setloading(true)
+  //   const file = e.target.files[0];
+  //   const reader = new FileReader();
+  //   reader.addEventListener("load", async() => {
+  //     setbase64Image(reader.result);
+  //     resizeImage(base64Image).then((result) => {
+  //      setbase64Image(result)
+  //      setloading(false)
+  //   });
 
-    });
-    reader.readAsDataURL(file);
-  }
+  //   });
+  //   reader.readAsDataURL(file);
+  // }
   function handleChange(e) {
     setpostdata({ ...postData, [e.target.name]: e.target.value });
   }
@@ -86,9 +95,9 @@ const CreatePost = () => {
           <img
             
             width="400px"
-            src={base64Image || PreviwPng}
+            src={postData.photo|| PreviwPng}
           />
-          <Input
+          {/* <Input
             css={{
               "&::-webkit-file-upload-button": {
                 backgroundColor: "rgb(0,120,255)",
@@ -102,7 +111,10 @@ const CreatePost = () => {
             onChange={handleImageChange}
             type="file"
             placeholder="Choose a Image"
-          />
+          /> */}
+
+
+          <Input onChange={handleChange} type="url" placeholder="Image Url" name="photo"/>
         </Box>
 
         <Box
@@ -128,7 +140,7 @@ const CreatePost = () => {
             type="text"
           />
 
-          <Button onClick={handleSubmit} mt="10px" colorScheme="messenger">
+          <Button  isLoading={loading} onClick={handleSubmit} mt="10px" colorScheme="messenger">
             Publish
           </Button>
         </Box>

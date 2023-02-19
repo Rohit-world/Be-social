@@ -1,5 +1,4 @@
 function resizeImage(base64Str, maxWidth = 400, maxHeight = 350) {
-    console.log("invoked")
     return new Promise((resolve) => {
       let img = new Image()
       img.src = base64Str
@@ -25,7 +24,7 @@ function resizeImage(base64Str, maxWidth = 400, maxHeight = 350) {
         canvas.height = height
         let ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0, width, height)
-        resolve(canvas.toDataURL())
+        resolve(canvas.toDataURL('image/jpeg', 0.8))
       }
     })
   }
