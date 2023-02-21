@@ -3,6 +3,8 @@ import Dashboard from "./dashboard";
 import Login from "./login";
 import Register from "./register";
 import CreatePost from "./createPost";
+import Post from "./post";
+import UserBlog from "./UserBlog";
 
 const AllRoutes=()=>{
     return(
@@ -11,8 +13,8 @@ const AllRoutes=()=>{
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="create/post" element={<CreatePost/>} />
-            <Route />
-            <Route />
+            <Route path="/post/:ID"element={<Post/>} />
+            <Route path="/post/user/:username" element={<UserBlog/>} />
         </Routes>
     )
 }

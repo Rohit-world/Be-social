@@ -8,8 +8,7 @@ import { LoggedIn } from './Redux/action'
 
 
 function App() {
-  const dispatch=useDispatch()
-useSelector((state)=>console.log(state))
+const dispatch=useDispatch()
 
 useEffect(() => {
  

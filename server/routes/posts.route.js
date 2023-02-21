@@ -67,6 +67,7 @@ PostRoute.delete("/:id", async (req, resp) => {
 });
 
 PostRoute.get("/:id", async (req, resp) => {
+  console.log("trigg")
   try {
     const post = await PostModel.findById(req.params.id);
 

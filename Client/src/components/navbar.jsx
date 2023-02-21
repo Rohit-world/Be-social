@@ -9,14 +9,17 @@ import {
   IconButton,
   Text,
 } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import NavLogo from "../assets/logo.png";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const location = useLocation();
   const [isLargerThan500] = useMediaQuery("(min-width: 500px)");
   const [isSmallerThan500] = useMediaQuery("(max-width: 500px)");
+  const user=useSelector((state)=>state.User)
+  const navigate=useNavigate()
   return (
     <Box mb="10px">
       {isLargerThan500 && (
@@ -33,6 +36,7 @@ const Navbar = () => {
           <Box>
             {" "}
             <img
+            onClick={()=>navigate("/")}
               width="90px"
               src={NavLogo}
               alt="580b57fcd9996e24bc43c529"
@@ -44,7 +48,7 @@ const Navbar = () => {
               <Text color={location.pathname == "/" && "green"}>Home</Text>
             </Link>
 
-            <Link to="/post/user"> <Text color={location.pathname == "/post/user/:username" && "green"}>Your Posts</Text></Link>
+             <Text cursor="pointer" onClick={()=>navigate(`/post/user/${user.username}`)} color={location.pathname == `/post/user/${user.username}` && "green"}>Your Posts</Text>
             <Link to="/create/post">
               <Text color={location.pathname == "/create/post" && "green"}>
                 Create Post

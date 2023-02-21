@@ -9,12 +9,12 @@ const GridComponent = ({data}) => {
 <Box mt={4} display="grid" gridTemplateColumns="repeat(3,1fr)" gap={5} >
 
 
-{data[0] && data.map((ele)=>
-  <Box _hover={{backgroundColor:"gray.100"}}  cursor="pointer" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" borderRadius="10px" > 
+{data[0] && data.map((ele,index)=>
+  <Box key={index} _hover={{backgroundColor:"gray.100"}}  cursor="pointer" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" borderRadius="10px" > 
 
-<img onClick={()=>navigate("/post")} style={{borderRadius:"10px",height:"280px"}} src={ele.photo} alt="" />
+<img onClick={()=>navigate(`/post/${ele._id}`)}  style={{borderRadius:"10px",height:"280px"}} src={ele.photo} alt="" />
 <Box padding="4%">
-<Text  onClick={()=>navigate("/post")}fontSize="1.5vw"  fontWeight="bold" color="orange.900"> {ele.title.slice(0,30)}...  </Text>
+<Text  onClick={()=>navigate(`/post/${ele._id}`)} fontSize="1.5vw"  fontWeight="bold" color="orange.900"> {ele.title.slice(0,30)}...  </Text>
 
 <Box width="20%">
   <Link to={`/post/user/${ele.username}`}>
@@ -22,7 +22,7 @@ const GridComponent = ({data}) => {
 </Link>
 </Box>
 
-<Text onClick={()=>navigate("/post")} color="gray.600" align="start">{ele.description.slice(0,340)}  ...........</Text>
+<Text onClick={()=>navigate(`/post/${ele._id}`)} color="gray.600" align="start">{ele.description.slice(0,340)}  ...........</Text>
 </Box>
 </Box>
 )}

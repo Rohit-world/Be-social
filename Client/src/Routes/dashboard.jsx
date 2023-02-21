@@ -6,19 +6,26 @@ import Crousel from "../components/crousel";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import GridComponent from "../components/grid";
+import { BlogRequest,BlogRequestFail,BlogRequestSuccess } from "../Redux/action";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Dashboard = () => {
-const [Blogs,setblogs]=useState([])
+
+
 const toast=useToast()
 const navigate=useNavigate()
+const dispatch=useDispatch()
+const Blogs=useSelector((state)=>state.Blogs) 
   
   async function GetData(){
+    dispatch(BlogRequest())
     try{
+ axios.get(`${BaseUrl}/post`).then((res)=>{
+dispatch(BlogRequestSuccess(res.data))
 
-      axios.get(`${BaseUrl}/post`).then((res)=>{
-setblogs(res.data)
       }).catch((err)=>{
+        dispatch(BlogRequestFail())
         toast({
           title:"Error in getting data from backend",
           status:"info",
@@ -27,6 +34,7 @@ setblogs(res.data)
       })
 
     }catch(err){
+      dispatch(BlogRequestFail())
       toast({
         title:"Something Went Wrong",
         position:"top",
@@ -41,14 +49,14 @@ useEffect(() => {
     GetData()
   };
 }, []);
-console.log(Blogs)
+
 
   return (
   <Box>
 <Box><Crousel/></Box>
 
 <Box mt={4} padding="2%" backgroundColor="gray.100" color="green" ><Heading>Blogs/Articles</Heading></Box>
-{Blogs[0] && <GridComponent data={Blogs}/>}
+{Blogs.Blogs[0] && <GridComponent data={Blogs.Blogs}/>}
 
 
  </Box>
