@@ -29,3 +29,4 @@ function resizeImage(base64Str, maxWidth = 400, maxHeight = 350) {
     })
   }
   export default resizeImage
+
