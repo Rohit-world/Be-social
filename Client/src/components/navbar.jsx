@@ -12,14 +12,20 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import NavLogo from "../assets/logo.png";
-import { useSelector } from "react-redux";
-
+import { useSelector,useDispatch } from "react-redux";
+import { LoggedOut } from "../Redux/action";
 const Navbar = () => {
   const location = useLocation();
   const [isLargerThan500] = useMediaQuery("(min-width: 500px)");
   const [isSmallerThan500] = useMediaQuery("(max-width: 500px)");
   const user=useSelector((state)=>state.User)
   const navigate=useNavigate()
+  const dispatch=useDispatch()
+
+  function LogutUser(){
+dispatch(LoggedOut())
+localStorage.setItem("be-socialuser",null)
+  }
   return (
     <Box mb="10px">
       {isLargerThan500 && (
@@ -71,10 +77,10 @@ const Navbar = () => {
                 variant="outline"
               />
               <MenuList>
-                <MenuItem>Home Blog</MenuItem>
-                <MenuItem>This That</MenuItem>
+                <MenuItem>Profile</MenuItem>
+                <MenuItem >This That</MenuItem>
                 <MenuItem>New Tab</MenuItem>
-                <MenuItem>New Tab</MenuItem>
+                <MenuItem onClick={LogutUser}> Logout</MenuItem>
               </MenuList>
             </Menu>
           </Box>

@@ -5,16 +5,17 @@ import Register from "./register";
 import CreatePost from "./createPost";
 import Post from "./post";
 import UserBlog from "./UserBlog";
+import PrivateRoute from "./PrivateRoutes";
 
 const AllRoutes=()=>{
     return(
         <Routes>
-            <Route path="/" element={<Dashboard/>} />
+            <Route path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
-            <Route path="create/post" element={<CreatePost/>} />
-            <Route path="/post/:ID"element={<Post/>} />
-            <Route path="/post/user/:username" element={<UserBlog/>} />
+            <Route path="create/post" element={<PrivateRoute><CreatePost/></PrivateRoute>} />
+            <Route path="/post/:ID"element={<PrivateRoute><Post/></PrivateRoute>} />
+            <Route path="/post/user/:username" element={<PrivateRoute><UserBlog/></PrivateRoute>} />
         </Routes>
     )
 }

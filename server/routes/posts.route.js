@@ -47,7 +47,8 @@ PostRoute.patch("/:id", async (req, resp) => {
 
 //delete post by the user
 
-PostRoute.delete("/:id", async (req, resp) => {
+PostRoute.put("/:id", async (req, resp) => {
+  console.log(req.body)
   try {
     const post = await PostModel.findById(req.params.id);
     if (post.username == req.body.username) {
@@ -67,7 +68,6 @@ PostRoute.delete("/:id", async (req, resp) => {
 });
 
 PostRoute.get("/:id", async (req, resp) => {
-  console.log("trigg")
   try {
     const post = await PostModel.findById(req.params.id);
 

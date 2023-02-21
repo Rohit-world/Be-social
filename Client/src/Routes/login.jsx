@@ -5,9 +5,11 @@ import { useMediaQuery } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BaseUrl from '../../server.url';
-
+import { LoggedIn } from '../Redux/action';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
+const dispatch=useDispatch()
 const [isLargerThan500] = useMediaQuery('(min-width: 500px)')
 const toast=useToast()
 const [Userdata, setUserdata] = useState({username:"", password:""});
@@ -26,7 +28,15 @@ if(!Userdata.username||!Userdata.password||!Userdata)return toast({title:"Please
 setloading(true)
 try {
     axios.post(`${BaseUrl}/auth/login`,Userdata).then((res)=>{
+      
         setloading(false)
+        toast({
+            title: `Welcome ${res.data.username.toUpperCase()}`,
+            position:"top",
+            status:"success"
+        })
+        dispatch(LoggedIn(res.data))
+        localStorage.setItem("be-socialuser",JSON.stringify(res.data))
 
     }).catch((err)=>{
         setloading(false)

@@ -12,7 +12,7 @@ const dispatch=useDispatch()
 
 useEffect(() => {
  
-dispatch(LoggedIn({username:"rohit",email:"kkrohit"}))
+
   
 }, []);
 

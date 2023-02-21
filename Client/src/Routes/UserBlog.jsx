@@ -4,12 +4,15 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import BaseUrl from '../../server.url';
 import GridComponent from '../components/grid';
+import { useSelector } from 'react-redux';
 
 
 const UserBlog = () => {
     const [Blogs,setBlog]=useState([])
     const{username}=useParams()
+    const LoggedUser=useSelector((state)=>state.User.username)
     const toast=useToast()
+
 
 
     async function GetData(){
@@ -42,7 +45,10 @@ const UserBlog = () => {
 
     return (
         <Box>
-          <Text padding="2%" fontSize="3xl" fontWeight="medium" bgColor="gray.100"  >All Blogs/Articles by <span style={{textTransform:"capitalize",color:"green"}}>{username}</span></Text>
+          <Text padding="2%" fontSize="3xl" fontWeight="medium" bgColor="gray.100"  >All Blogs/Articles of <span style={{textTransform:"capitalize",color:"green"}}>
+            
+            {username==LoggedUser?"You":username}
+            </span></Text>
 
           {Blogs[0] && <GridComponent data={Blogs}/>}
         </Box>

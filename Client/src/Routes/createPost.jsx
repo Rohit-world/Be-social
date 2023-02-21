@@ -50,7 +50,7 @@ const CreatePost = () => {
 setloading(true)
             axios.post(`${BaseUrl}/post`,{
             ...postData,
-            username:"vector",
+            username:"rohit",
             postTime:Date.now(),category:["life","photography"]
             }).then((res)=>{
              if(res.data){
