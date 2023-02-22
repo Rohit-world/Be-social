@@ -70,7 +70,7 @@ const Crousel = () => {
        <Box key={ele.title}  > 
        <Box display="flex" justifyContent="center" alignItems="center" height="40vh" background={`url(${ele.img})`} backgroundSize="cover"  >
        
-        <Text bgColor="white" width="95%" fontSize="2vw"   fontFamily="cursive" color="yellow.700"  >{ele.title}</Text>
+        <Text bgColor="white" width="95%" fontSize="large"   fontFamily="cursive" color="yellow.700"  >{ele.title}</Text>
          </Box>
        </Box>
       ))}

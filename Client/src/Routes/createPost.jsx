@@ -1,25 +1,23 @@
 import {
-  Avatar,
   Box,
   Button,
   Heading,
-
   Input,
-  Text,
   Textarea,
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import BaseUrl from "../../server.url";
 import PreviwPng from "../assets/preview.png";
-import resizeImage from "../js/ResizeImage";
+
 
 const CreatePost = () => {
   const Toast = useToast();
-  const [base64Image, setbase64Image] = useState("");
   const [postData, setpostdata] = useState({ title: "", description: "",photo:"" });
   const [loading,setloading]=useState(false)
+  const LoggedUser=useSelector((state)=>state.User.username)
 
 
   function PassedValidationCheck() {
@@ -50,8 +48,9 @@ const CreatePost = () => {
 setloading(true)
             axios.post(`${BaseUrl}/post`,{
             ...postData,
-            username:"rohit",
-            postTime:Date.now(),category:["life","photography"]
+            username:LoggedUser,
+            postTime:Date.now(),
+            category:["life","photography"]
             }).then((res)=>{
              if(res.data){
               Toast({

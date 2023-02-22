@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import GridComponent from "../components/grid";
 import { BlogRequest,BlogRequestFail,BlogRequestSuccess } from "../Redux/action";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 
 const Dashboard = () => {
@@ -55,7 +56,10 @@ useEffect(() => {
   <Box>
 <Box><Crousel/></Box>
 
+
 <Box mt={4} padding="2%" backgroundColor="gray.100" color="green" ><Heading>Blogs/Articles</Heading></Box>
+
+{Blogs.loading && <LoadingIndicator />}
 {Blogs.Blogs[0] && <GridComponent data={Blogs.Blogs}/>}
 
 
