@@ -19,7 +19,7 @@ const GridComponent = ({data}) => {
 {data[0] && data.map((ele,index)=>
   <Box key={index} _hover={{backgroundColor:"gray.100"}}  cursor="pointer" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" borderRadius="10px" > 
 
-<img onClick={()=>navigate(`/post/${ele._id}`)}  style={{borderRadius:"10px",height:"280px"}} src={ele.photo} alt="" />
+<img onClick={()=>navigate(`/post/${ele._id}`)}  style={{borderRadius:"10px",height:"280px",width:"100%"}} src={ele.photo} alt="" />
 <Box padding="4%">
 <Text  onClick={()=>navigate(`/post/${ele._id}`)} fontSize="xl"  fontWeight="bold" color="orange.900"> {ele.title.slice(0,30)}...  </Text>
 

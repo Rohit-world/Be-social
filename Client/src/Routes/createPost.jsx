@@ -3,6 +3,7 @@ import {
   Button,
   Heading,
   Input,
+  Select,
   Textarea,
   useToast,
 } from "@chakra-ui/react";
@@ -15,7 +16,7 @@ import PreviwPng from "../assets/preview.png";
 
 const CreatePost = () => {
   const Toast = useToast();
-  const [postData, setpostdata] = useState({ title: "", description: "",photo:"" });
+  const [postData, setpostdata] = useState({ title: "", description: "",photo:"",category:"" });
   const [loading,setloading]=useState(false)
   const LoggedUser=useSelector((state)=>state.User.username)
 
@@ -50,7 +51,6 @@ setloading(true)
             ...postData,
             username:LoggedUser,
             postTime:Date.now(),
-            category:["life","photography"]
             }).then((res)=>{
              if(res.data){
               Toast({
@@ -92,6 +92,8 @@ setloading(false)
   function handleChange(e) {
     setpostdata({ ...postData, [e.target.name]: e.target.value });
   }
+
+  console.log(postData)
   return (
     <Box>
       <Heading color="green.600">Create New Post</Heading>
@@ -129,12 +131,22 @@ setloading(false)
           display="flex"
           flexDirection="column"
         >
-          <Input
+          <Input 
             name="title"
             onChange={handleChange}
             placeholder="Title of the post"
             type="text"
           />
+          <Select  onChange={handleChange} name="category"  mt="10px">
+            <option value="">Select Category</option>
+            <option value="photoghraphy">PhotoGraphy</option>
+            <option value="wildlife">Wildlife</option>
+            <option value="ai">Artificial Intelligence</option>
+            <option value="travelling">Travelling</option>
+            <option value="books">Books</option>
+            <option value="music">Music</option>
+            <option value="humanlife">Human Life</option>
+          </Select>
 
           <Textarea
             mt="10px"

@@ -1,4 +1,3 @@
-
 const { default: mongoose } = require("mongoose");
 const postScema=mongoose.Schema({
     title:{
@@ -18,7 +17,7 @@ const postScema=mongoose.Schema({
     category:{
         require:true,
        
-        type:Array
+        type:String
 
     }
     ,username:{

@@ -10,9 +10,7 @@ import { BlogRequest,BlogRequestFail,BlogRequestSuccess } from "../Redux/action"
 import { useDispatch, useSelector } from "react-redux";
 import LoadingIndicator from "../components/LoadingIndicator";
 
-
 const Dashboard = () => {
-
 
 const toast=useToast()
 const navigate=useNavigate()
@@ -44,26 +42,24 @@ dispatch(BlogRequestSuccess(res.data))
     }
   }
 
+
+
 useEffect(() => {
-  GetData()
+ !Blogs.Blogs[0] && GetData()
   return () => {
     GetData()
   };
 }, []);
 
 
-  return (
-  <Box>
+
+return (
+<Box>
 <Box><Crousel/></Box>
-
-
 <Box mt={4} padding="2%" backgroundColor="gray.100" color="green" ><Heading>Blogs/Articles</Heading></Box>
-
 {Blogs.loading && <LoadingIndicator />}
 {Blogs.Blogs[0] && <GridComponent data={Blogs.Blogs}/>}
-
-
- </Box>
+</Box>
   );
 };
 
