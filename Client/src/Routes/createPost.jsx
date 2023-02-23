@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import BaseUrl from "../../server.url";
 import PreviwPng from "../assets/preview.png";
 
@@ -19,10 +20,11 @@ const CreatePost = () => {
   const [postData, setpostdata] = useState({ title: "", description: "",photo:"",category:"" });
   const [loading,setloading]=useState(false)
   const LoggedUser=useSelector((state)=>state.User.username)
+  const navigate=useNavigate()
 
 
   function PassedValidationCheck() {
-    if (!postData.photo|| !postData.title || !postData.description) {
+    if (!postData.photo|| !postData.title || !postData.description ||!postData.category) {
       Toast({
         title: "Please Give all the Details",
         status: "info",
@@ -60,6 +62,7 @@ setloading(true)
               })
              }
               setloading(false)
+              navigate("/")
             }).catch((err)=>{
               console.log("errir",err)
               setloading(false)

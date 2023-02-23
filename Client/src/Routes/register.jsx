@@ -48,7 +48,7 @@ setloading(true)
 try {
     axios.post(`${BaseUrl}/auth/register`,Userdata).then((res)=>{
        setloading(false)
-       toast({title:"Welcome to Be-Social",status:"error",position:"top"})
+       toast({title:"Welcome to Be-Social",status:"success",position:"top"})
 
     }).catch((err)=>{
         setloading(false)

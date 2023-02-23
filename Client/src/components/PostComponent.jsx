@@ -16,7 +16,7 @@ const PostComponent = ({data}) => {
 
             <Text color="orange.900" fontWeight="medium" fontSize="4xl">{data.title}</Text>
            
-            <Text px="10%" >{data.description}</Text>
+          <Box textOverflow="hidden" whiteSpace="nowrap" >  <pre ><code style={{width:"100vw"}} >{data.description}</code></pre></Box>
 
 
             </Box>

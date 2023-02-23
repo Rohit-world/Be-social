@@ -21,11 +21,11 @@ const GridComponent = ({data}) => {
 
 <img onClick={()=>navigate(`/post/${ele._id}`)}  style={{borderRadius:"10px",height:"280px",width:"100%"}} src={ele.photo} alt="" />
 <Box padding="4%">
-<Text  onClick={()=>navigate(`/post/${ele._id}`)} fontSize="xl"  fontWeight="bold" color="orange.900"> {ele.title.slice(0,30)}...  </Text>
+<Text  textTransform="uppercase" onClick={()=>navigate(`/post/${ele._id}`)} fontSize="xl"  fontWeight="bold" color="orange.900"> {ele.title.slice(0,30)}...  </Text>
 
-<Box width="20%">
+<Box width="30%">
   <Link to={`/post/user/${ele.username}`}>
-<Text _hover={{color:"blue",textDecoration:"none"}} textDecoration="underline" color="blueviolet" align="start">@{ele.username}</Text>
+<Text  _hover={{color:"blue",textDecoration:"none"}} textDecoration="underline" color="blueviolet" align="start">@{ele.username}</Text>
 </Link>
 </Box>
 

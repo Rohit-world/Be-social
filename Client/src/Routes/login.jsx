@@ -2,7 +2,7 @@ import { Box, Button, Input, Text,useToast } from '@chakra-ui/react';
 import React,{useState} from 'react';
 import loginSvg from "../assets/login.svg"
 import { useMediaQuery } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BaseUrl from '../../server.url';
 import { LoggedIn } from '../Redux/action';
@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 
 const Login = () => {
 const dispatch=useDispatch()
+const navigate=useNavigate()
 const [isLargerThan500] = useMediaQuery('(min-width: 500px)')
 const toast=useToast()
 const [Userdata, setUserdata] = useState({username:"", password:""});
@@ -37,6 +38,7 @@ try {
         })
         dispatch(LoggedIn(res.data))
         localStorage.setItem("be-socialuser",JSON.stringify(res.data))
+        navigate("/")
 
     }).catch((err)=>{
         setloading(false)

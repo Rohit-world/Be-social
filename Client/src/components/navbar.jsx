@@ -68,7 +68,7 @@ localStorage.setItem("be-socialuser",null)
           </Box>
           <Box>
             {" "}
-            <Menu>
+           {user.username &&  <Menu>
               <MenuButton
                 as={IconButton}
                 aria-label="Options"
@@ -82,10 +82,16 @@ localStorage.setItem("be-socialuser",null)
                 <MenuItem>New Tab</MenuItem>
                 <MenuItem onClick={LogutUser}> Logout</MenuItem>
               </MenuList>
-            </Menu>
+            </Menu>}
           </Box>
         </Box>
       )}
+
+
+
+
+
+
 
       {/* smaller screen  */}
 

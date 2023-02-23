@@ -45,7 +45,7 @@ dispatch(BlogRequestSuccess(res.data))
 
 
 useEffect(() => {
- !Blogs.Blogs[0] && GetData()
+  GetData()
   return () => {
     GetData()
   };
