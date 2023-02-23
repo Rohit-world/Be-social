@@ -23,13 +23,20 @@ const GridComponent = ({data}) => {
 <Box padding="4%">
 <Text  textTransform="uppercase" onClick={()=>navigate(`/post/${ele._id}`)} fontSize="xl"  fontWeight="bold" color="orange.900"> {ele.title.slice(0,30)}...  </Text>
 
-<Box width="30%">
-  <Link to={`/post/user/${ele.username}`}>
+<Box >
+  {/* <Link to={`/post/user/${ele.username}`}>
 <Text  _hover={{color:"blue",textDecoration:"none"}} textDecoration="underline" color="blueviolet" align="start">@{ele.username}</Text>
-</Link>
+</Link> */}
+
+<Text textTransform="capitalize" fontSize="small" mt="3px"  fontFamily="mono">
+Posted on: <span >{Date(ele.postTime).slice(3,15)}</span> by <span style={{color:"green",}} >{ele.username}</span>
+  </Text>
+
 </Box>
 
-<Text onClick={()=>navigate(`/post/${ele._id}`)} color="gray.600" align="start">{ele.description.slice(0,340)}  ...........</Text>
+<Text mt="5px" onClick={()=>navigate(`/post/${ele._id}`)} color="gray.600" align="start">{ele.description.slice(0,340)}......</Text>
+
+
 </Box>
 </Box>
 )}

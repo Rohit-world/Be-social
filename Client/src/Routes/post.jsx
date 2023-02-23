@@ -21,7 +21,8 @@ import { Box, Button, useToast,Modal,
     PopoverFooter,
     ButtonGroup,
     Popover,
-    PopoverTrigger, } from '@chakra-ui/react';
+    PopoverTrigger,
+    Text, } from '@chakra-ui/react';
 import axios from 'axios';
 import BaseUrl from '../../server.url';
 import PostComponent from '../components/PostComponent';
@@ -154,7 +155,7 @@ GetData()
         <div>
            {Blog && <PostComponent data={Blog}/>}
 
-          {Blog.username==loggedUser &&  <Box marginTop="5%" display="flex" justifyContent="space-evenly" padding="4%">
+          {Blog.username==loggedUser &&  <Box marginTop="15%" display="flex" justifyContent="space-evenly" padding="4%">
             <Button onClick={onOpen} colorScheme="green">Edit Post</Button>
             
 
@@ -240,8 +241,7 @@ GetData()
           </ModalFooter>
         </ModalContent>
       </Modal>
-
-
+     
       
         </div>
     );
