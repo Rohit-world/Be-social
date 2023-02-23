@@ -144,7 +144,7 @@ setloading(false)
             <option value="">Select Category</option>
             <option value="photoghraphy">PhotoGraphy</option>
             <option value="wildlife">Wildlife</option>
-            <option value="ai">Artificial Intelligence</option>
+            <option value="Artificial Intelligence">Artificial Intelligence</option>
             <option value="travelling">Travelling</option>
             <option value="books">Books</option>
             <option value="music">Music</option>

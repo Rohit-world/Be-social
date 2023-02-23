@@ -10,6 +10,7 @@ import lifeImage from "../assets/life.jpg"
 import wildlifeImage from "../assets/wildlife.jpg"
 import musicImage from "../assets/music.jpg"
 import { Box, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 
 const settings = {
@@ -27,33 +28,40 @@ const categorys=[
  {
     url:"",
     img:photographyImage,
-    title:"Photography" 
+    title:"Photography" ,
+    link:"photoghraphy"
  },
  {
     url:"",
     img:wildlifeImage,
-    title:"WildLife" 
+    title:"WildLife" ,
+    link:"wildlife"
  },  {
     url:"",
     img:aiImage,
-    title:"Artificial Intelligence" 
+    title:"Artificial Intelligence" ,
+    link:"Artificial Intelligence"
  },   {
     url:"",
     img:lifeImage,
-    title:"Human Life" 
+    title:"Human Life" ,
+    link:"travelling"
  }, {
      url:"",
      img:bookImage,
-     title:"Books" 
+     title:"Books",
+     link:"books" 
   }, 
  {
     url:"",
     img:musicImage,
-    title:"Music" 
+    title:"Music" ,
+    link:"music"
  }, {
     url:"",
     img:travelImage,
-    title:"Travelling" 
+    title:"Travelling" ,
+    link:"humanlife"
  }
 
 
@@ -64,10 +72,16 @@ const categorys=[
 
 
 const Crousel = () => {
+const navigate=useNavigate()
+
+   function handleClick(ele){
+      navigate(`/post/cat/${ele.link}`)
+   }
+
   return (
     <Slider  {...settings}>
       {categorys.map((ele) => (
-       <Box key={ele.title}  > 
+       <Box onClick={()=>handleClick(ele)} key={ele.title}  > 
        <Box display="flex" justifyContent="center" alignItems="center" height="40vh" background={`url(${ele.img})`} backgroundSize="cover"  >
        
         <Text bgColor="white" width="95%" fontSize="large"   fontFamily="cursive" color="yellow.700"  >{ele.title}</Text>

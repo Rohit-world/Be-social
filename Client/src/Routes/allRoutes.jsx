@@ -7,6 +7,7 @@ import Post from "./post";
 import UserBlog from "./UserBlog";
 import PrivateRoute from "./PrivateRoutes";
 import NotFound from "./NotFound";
+import PostCategorypage from "./postCategorypage";
 
 const AllRoutes=()=>{
     return(
@@ -17,6 +18,7 @@ const AllRoutes=()=>{
             <Route path="create/post" element={<PrivateRoute><CreatePost/></PrivateRoute>} />
             <Route path="/post/:ID"element={<PrivateRoute><Post/></PrivateRoute>} />
             <Route path="/post/user/:username" element={<PrivateRoute><UserBlog/></PrivateRoute>} />
+            <Route path="/post/cat/:category" element={<PrivateRoute><PostCategorypage/></PrivateRoute>} />
 
             <Route path="*" element={<NotFound/>}/>
         </Routes>

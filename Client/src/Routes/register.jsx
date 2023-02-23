@@ -2,7 +2,7 @@ import { Box, Button, Input, Text,useToast } from '@chakra-ui/react';
 import React,{useState} from 'react';
 import loginSvg from "../assets/login.svg"
 import { useMediaQuery } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BaseUrl from '../../server.url';
 
@@ -12,6 +12,7 @@ const [isLargerThan500] = useMediaQuery('(min-width: 500px)')
 const toast=useToast()
 const [Userdata, setUserdata] = useState({username:"", password:"",email:""});
 const [loading ,setloading]=useState(false)
+const navigate=useNavigate()
 function handleChange(e){
 const {name,value}=e.target
 setUserdata({
@@ -48,7 +49,8 @@ setloading(true)
 try {
     axios.post(`${BaseUrl}/auth/register`,Userdata).then((res)=>{
        setloading(false)
-       toast({title:"Welcome to Be-Social",status:"success",position:"top"})
+       toast({title:"Account Created successfully",status:"success",position:"top"})
+       navigate("/login")
 
     }).catch((err)=>{
         setloading(false)

@@ -13,7 +13,7 @@ const GridComponent = ({data}) => {
 
   
     return (         
-<Box mt={4} display="grid" gridTemplateColumns={isSmallerThan500 &&"repeat(1,1fr)"||isSmallerThan850 && "repeat(2,1fr)" || isLargerThan850&&"repeat(3,1fr)" } gap={5} >
+<Box padding="1%" mt={4} display="grid" gridTemplateColumns={isSmallerThan500 &&"repeat(1,1fr)"||isSmallerThan850 && "repeat(2,1fr)" || isLargerThan850&&"repeat(3,1fr)" } gap={5} >
 
 
 {data[0] && data.map((ele,index)=>
