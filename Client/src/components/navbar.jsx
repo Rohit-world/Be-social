@@ -55,11 +55,7 @@ localStorage.setItem("be-socialuser",null)
             </Link>
 
              <Text cursor="pointer" onClick={()=>navigate(`/post/user/${user.username}`)} color={location.pathname == `/post/user/${user.username}` && "green"}>Your Posts</Text>
-            <Link to="/create/post">
-              <Text color={location.pathname == "/create/post" && "green"}>
-                Create Post
-              </Text>
-            </Link>
+            
             <Link to="/about">
               <Text color={location.pathname == "/about" && "green"}>
                About
@@ -77,9 +73,10 @@ localStorage.setItem("be-socialuser",null)
                 variant="outline"
               />
               <MenuList>
+              <Link to="/create/post">
+                <MenuItem>+ Create Post</MenuItem>
+              </Link>
                 <MenuItem>Profile</MenuItem>
-                <MenuItem >This That</MenuItem>
-                <MenuItem>New Tab</MenuItem>
                 <MenuItem onClick={LogutUser}> Logout</MenuItem>
               </MenuList>
             </Menu>}
@@ -111,7 +108,32 @@ localStorage.setItem("be-socialuser",null)
           </Box>
 
           <Box>
-            <Avatar></Avatar>
+          <Menu>
+              <MenuButton
+                as={IconButton}
+                aria-label="Options"
+                icon={<Avatar name="rohit kumar" />}
+                borderRadius="full"
+                variant="outline"
+              />
+              <MenuList>
+              <Link to="/">
+                <MenuItem>Home</MenuItem>
+              </Link>
+
+              <Link to={`/post/user/${user.username}`}>
+                <MenuItem>Your Posts</MenuItem>
+              </Link>
+
+              <Link to="/create/post">
+                <MenuItem>+Create Post</MenuItem>
+              </Link>
+
+
+                <MenuItem>Profile</MenuItem>
+                <MenuItem onClick={LogutUser}> Logout</MenuItem>
+              </MenuList>
+            </Menu>
           </Box>
         </Box>
       )}

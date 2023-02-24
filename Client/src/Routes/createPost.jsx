@@ -5,6 +5,7 @@ import {
   Input,
   Select,
   Textarea,
+  useMediaQuery,
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -16,6 +17,8 @@ import PreviwPng from "../assets/preview.png";
 
 
 const CreatePost = () => {
+  const [isLargerThan850] = useMediaQuery("(min-width: 850px)");
+  const [isSmallerThan850] = useMediaQuery("(max-width: 850px)");
   const Toast = useToast();
   const [postData, setpostdata] = useState({ title: "", description: "",photo:"",category:"" });
   const [loading,setloading]=useState(false)
@@ -96,11 +99,10 @@ setloading(false)
     setpostdata({ ...postData, [e.target.name]: e.target.value });
   }
 
-  console.log(postData)
   return (
     <Box>
       <Heading color="green.600">Create New Post</Heading>
-      <Box pt="5%" display="flex" justifyContent="space-around">
+      <Box pt="5%" display={isLargerThan850?"flex":"grid"} justifyContent="space-around">
         <Box display="grid" gap={10}>
           <img
             
@@ -128,7 +130,7 @@ setloading(false)
         </Box>
 
         <Box
-          width="40%"
+          width={isLargerThan850 && "40%"}
           justifyContent="space-around"
           alignItems="center"
           display="flex"
