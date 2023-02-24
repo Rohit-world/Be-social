@@ -14,6 +14,12 @@ import React from "react";
 import NavLogo from "../assets/logo.png";
 import { useSelector,useDispatch } from "react-redux";
 import { LoggedOut } from "../Redux/action";
+import { FaUserEdit ,FaPlus} from 'react-icons/fa';
+import {FiLogOut} from "react-icons/fi"
+import {MdOutlineArticle} from "react-icons/md"
+import {AiOutlineHome} from "react-icons/ai"
+
+
 const Navbar = () => {
   const location = useLocation();
   const [isLargerThan500] = useMediaQuery("(min-width: 500px)");
@@ -74,10 +80,10 @@ localStorage.setItem("be-socialuser",null)
               />
               <MenuList>
               <Link to="/create/post">
-                <MenuItem>+ Create Post</MenuItem>
+                <MenuItem icon={<FaPlus/>}> Create Post</MenuItem>
               </Link>
-                <MenuItem>Profile</MenuItem>
-                <MenuItem onClick={LogutUser}> Logout</MenuItem>
+                <MenuItem icon={<FaUserEdit/>}>  Profile</MenuItem>
+                <MenuItem icon={<FiLogOut/>} onClick={LogutUser}> Logout</MenuItem>
               </MenuList>
             </Menu>}
           </Box>
@@ -118,20 +124,20 @@ localStorage.setItem("be-socialuser",null)
               />
               <MenuList>
               <Link to="/">
-                <MenuItem>Home</MenuItem>
+                <MenuItem icon={<AiOutlineHome/>} >Home</MenuItem>
               </Link>
 
+              <MenuItem icon={<FaUserEdit/>}>  Profile</MenuItem>
+
               <Link to={`/post/user/${user.username}`}>
-                <MenuItem>Your Posts</MenuItem>
+                <MenuItem icon={<MdOutlineArticle/>}>Your Posts</MenuItem>
               </Link>
 
               <Link to="/create/post">
-                <MenuItem>+Create Post</MenuItem>
+                <MenuItem icon={<FaPlus/>}>Create Post</MenuItem>
               </Link>
 
-
-                <MenuItem>Profile</MenuItem>
-                <MenuItem onClick={LogutUser}> Logout</MenuItem>
+                <MenuItem icon={<FiLogOut/>} onClick={LogutUser}> Logout</MenuItem>
               </MenuList>
             </Menu>
           </Box>

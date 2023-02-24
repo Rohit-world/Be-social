@@ -5,6 +5,7 @@ import AllRoutes from './Routes/allRoutes'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { LoggedIn } from './Redux/action'
+import Footer from './components/footer'
 
 
 function App() {
@@ -17,9 +18,10 @@ useEffect(() => {
 }, []);
 
   return (
-   <div>
+   <div >
     <Navbar/>
     <AllRoutes/>
+    <Footer/>
    </div>
   )
 }
