@@ -10,10 +10,10 @@ const Footer = () => {
 
             
             <Box display="flex" gap={10}>
-
-               <a target="_blank" href="https://www.instagram.com/rohitisonline/"> <AiFillInstagram size="30px"/></a>
+            <a href="mailto:rohitrs319791@gmail.com"><MdEmail  size="30px"/></a> 
                <a target="_blank" href="https://www.linkedin.com/in/iamrohit90/"  > <IoLogoLinkedin  size="30px"/></a>
-               <a href="mailto:rohitrs319791@gmail.com"><MdEmail  size="30px"/></a> 
+               <a target="_blank" href="https://www.instagram.com/rohitisonline/"> <AiFillInstagram size="30px"/></a>
+              
             </Box>
 
         </Box>
