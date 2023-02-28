@@ -8,6 +8,7 @@ import UserBlog from "./UserBlog";
 import PrivateRoute from "./PrivateRoutes";
 import NotFound from "./NotFound";
 import PostCategorypage from "./postCategorypage";
+import ProfilePage from "./profilePage";
 
 const AllRoutes=()=>{
     return(
@@ -19,6 +20,7 @@ const AllRoutes=()=>{
             <Route path="/post/:ID"element={<PrivateRoute><Post/></PrivateRoute>} />
             <Route path="/post/user/:username" element={<PrivateRoute><UserBlog/></PrivateRoute>} />
             <Route path="/post/cat/:category" element={<PrivateRoute><PostCategorypage/></PrivateRoute>} />
+            <Route path="/profile" element={<PrivateRoute><ProfilePage/></PrivateRoute>} />
 
             <Route path="*" element={<NotFound/>}/>
         </Routes>

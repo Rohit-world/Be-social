@@ -20,6 +20,7 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,
+  arrows:true
 };
 
 const categorys = [
@@ -45,7 +46,7 @@ const categorys = [
     url: "",
     img: lifeImage,
     title: "Human Life",
-    link: "travelling",
+    link: "humanlife",
   },
   {
     url: "",
@@ -63,7 +64,7 @@ const categorys = [
     url: "",
     img: travelImage,
     title: "Travelling",
-    link: "humanlife",
+    link: "travelling",
   },
 ];
 

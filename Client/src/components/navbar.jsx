@@ -82,7 +82,9 @@ localStorage.setItem("be-socialuser",null)
               <Link to="/create/post">
                 <MenuItem icon={<FaPlus/>}> Create Post</MenuItem>
               </Link>
-                <MenuItem icon={<FaUserEdit/>}>  Profile</MenuItem>
+              <Link to="/profile">
+             <MenuItem icon={<FaUserEdit/>}>  Profile</MenuItem>
+             </Link>
                 <MenuItem icon={<FiLogOut/>} onClick={LogutUser}> Logout</MenuItem>
               </MenuList>
             </Menu>}
@@ -127,7 +129,9 @@ localStorage.setItem("be-socialuser",null)
                 <MenuItem icon={<AiOutlineHome/>} >Home</MenuItem>
               </Link>
 
-              <MenuItem icon={<FaUserEdit/>}>  Profile</MenuItem>
+             <Link to="/profile">
+             <MenuItem icon={<FaUserEdit/>}>  Profile</MenuItem>
+             </Link>
 
               <Link to={`/post/user/${user.username}`}>
                 <MenuItem icon={<MdOutlineArticle/>}>Your Posts</MenuItem>
