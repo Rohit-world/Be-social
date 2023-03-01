@@ -11,6 +11,17 @@ const [isSmallerThan500] = useMediaQuery("(max-width: 500px)");
 
 const navigate = useNavigate();
 
+function ShareThePost(id){
+  navigator
+    .share({
+        title: document.title,
+        text: 'Hello World',
+        url: `/post/${id}`
+    })
+    .then(() => console.log('Successful share! 🎉'))
+    .catch(err => console.error(err));
+}
+
   return (
     <Box
       padding="1%"
@@ -75,7 +86,11 @@ const navigate = useNavigate();
               </Text>
               
 
-          <Box color="orange.400" paddingRight="10%" mt="10px" alignItems="baseline" display="flex" justifyContent="space-between">  <Text color="blue.500">#{ele.category}</Text> <BsFillShareFill/></Box>
+          <Box alignContent="center" color="green.400" paddingRight="10%" mt="10px" alignItems="baseline" display="flex" justifyContent="space-between"> 
+           <Text onClick={()=>navigate(`/post/cat/${ele.category}`)} color="blue.500">#{ele.category}</Text> 
+           
+           
+           <BsFillShareFill onClick={()=>ShareThePost(ele._id)} style={{paddingTop:"2px"}}/></Box>
 
             </Box>
           </Box>

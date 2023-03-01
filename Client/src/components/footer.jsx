@@ -5,7 +5,7 @@ import {MdEmail} from "react-icons/md"
 import {IoLogoLinkedin} from "react-icons/io"
 const Footer = () => {
     return (
-        <Box justifyContent="space-around" padding="2%" display="flex" justifyItems="center" alignItems="center" color="white" width="100%" height="50px" bgColor="rgb(22,137,205)">
+        <Box  justifyContent="space-around" padding="2%" display="flex" justifyItems="center" alignItems="center" color="white" width="100%" height="50px" bgColor="rgb(22,137,205)">
             <Box><Text>© Designed and Built by Rohit Kumar</Text></Box>
 
             

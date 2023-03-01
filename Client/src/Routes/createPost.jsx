@@ -100,7 +100,7 @@ setloading(false)
   }
 
   return (
-    <Box>
+    <Box pb="5%" minHeight="75vh">
       <Heading color="green.600">Create New Post</Heading>
       <Box pt="5%" display={isLargerThan850?"flex":"grid"} justifyContent="space-around">
         <Box display="grid" gap={10}>

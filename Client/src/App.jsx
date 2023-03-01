@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { LoggedIn } from './Redux/action'
 import Footer from './components/footer'
+import { Box } from '@chakra-ui/react'
 
 
 function App() {
@@ -18,11 +19,11 @@ useEffect(() => {
 }, []);
 
   return (
-   <div >
+   <Box>
     <Navbar/>
-    <AllRoutes/>
+    <AllRoutes />
     <Footer/>
-   </div>
+   </Box>
   )
 }
 
