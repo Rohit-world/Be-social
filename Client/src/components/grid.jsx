@@ -2,6 +2,7 @@ import { Box, Text, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {BsFillShareFill} from "react-icons/bs"
 
 const GridComponent = ({ data }) => {
 const [isLargerThan850] = useMediaQuery("(min-width: 850px)");
@@ -52,8 +53,7 @@ const navigate = useNavigate();
                 {/* <Link to={`/post/user/${ele.username}`}>
 <Text  _hover={{color:"blue",textDecoration:"none"}} textDecoration="underline" color="blueviolet" align="start">@{ele.username}</Text>
 </Link> */}
-
-                <Text
+<Text
                   textTransform="capitalize"
                   fontSize="small"
                   mt="3px"
@@ -62,6 +62,7 @@ const navigate = useNavigate();
                   Posted on: <span>{Date(ele.postTime).slice(3, 15)}</span> by{" "}
                   <span style={{ color: "green" }}>{ele.username}</span>
                 </Text>
+                
               </Box>
 
               <Text
@@ -72,6 +73,10 @@ const navigate = useNavigate();
               >
                 {ele.description.slice(0, 340)}......
               </Text>
+              
+
+          <Box color="orange.400" paddingRight="10%" mt="10px" alignItems="baseline" display="flex" justifyContent="space-between">  <Text color="blue.500">#{ele.category}</Text> <BsFillShareFill/></Box>
+
             </Box>
           </Box>
         ))}
