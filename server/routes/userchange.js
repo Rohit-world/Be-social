@@ -22,13 +22,13 @@ UserChange.patch("/:id", async (req, resp) => {
         }
       );
 
-      resp.status(200).json(updateUser);
+      resp.status(200).json(updateUser)
     } catch (error) {
       resp.status(401).json("You can't update the account");
     }
   }
 
-  resp.status(401).json("You can't update the account");
+
 });
 
 UserChange.delete("/:id", async (req, resp) => {

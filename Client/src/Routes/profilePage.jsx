@@ -1,6 +1,9 @@
-import { Avatar, Box, Button, Input, Text } from '@chakra-ui/react';
+import { Avatar, Box, Button, Input, Text, useToast } from '@chakra-ui/react';
+import axios from 'axios';
 import React,{useState} from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import BaseUrl from '../../server.url';
 
 const ProfilePage = () => {
 
@@ -9,17 +12,66 @@ const ProfilePage = () => {
     confirmPassword:"",
     propic:"",
   })
-  const userLoggedIn=useSelector((state)=>state.User.username)  
+  const toast=useToast()
+  const userLoggedIn=useSelector((state)=>state.User)  
+  const navigate=useNavigate()
 
-function handleChange(){
-  
+
+function handleChange(e){
+  const {name,value}=e.target
+setNewData({...newData,[name]:value})
+
 }
 
+
+async function handleSubmit(){
+if(newData.password!=newData.confirmPassword){
+  return toast({
+    status:"info",
+    title:"Fill Same Password",
+    position:"top"
+  })
+}
+try{
+
+  
+axios.patch(`${BaseUrl}/user/${userLoggedIn._id}`,{
+  userID:userLoggedIn._id,
+  password:newData.password
+}).then((res)=>{
+  toast({
+    status:"success",
+    title:"Password changed Sucessfull",
+    position:"top"
+
+  })
+navigate("/")
+}).catch((err)=>{
+  toast({
+    status:"error",
+    title:"something went wrong",
+    position:"top"
+
+  })
+})
+
+
+}catch(err){
+  toast({
+    status:"error",
+    title:"something went wrong",
+    position:"top"
+
+  })
+}
+
+
+}
 
     return (
         <Box height="75vh">
            <Box>
-            <Text fontSize="2xl" fontWeight="extrabold" color="green.500" > Hello {userLoggedIn} !</Text>
+            <Text fontSize="2xl" fontWeight="extrabold" color="green.500" > Hello {userLoggedIn.username} !</Text>
            </Box>
 
 
@@ -37,7 +89,7 @@ function handleChange(){
   <Text color="blueviolet" fontSize="xl" fontWeight="bold">Change Password</Text>
   <Input name='password' onChange={handleChange} type="password" placeholder='Enter New Password'/>
   <Input name="confirmPassword" onChange={handleChange} type="password" placeholder='Confirm New Password'/>
-  <Button colorScheme="messenger">Change Password</Button>
+  <Button onClick={handleSubmit} colorScheme="messenger">Change Password</Button>
 
 
 </Box>
