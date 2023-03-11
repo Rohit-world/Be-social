@@ -4,13 +4,12 @@ import React,{useState} from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BaseUrl from '../../server.url';
-
 const ProfilePage = () => {
 
   const [newData,setNewData]=useState({
     password:"",
     confirmPassword:"",
-    propic:"",
+    profilepic:"",
   })
   const toast=useToast()
   const userLoggedIn=useSelector((state)=>state.User)  
@@ -37,7 +36,8 @@ try{
   
 axios.patch(`${BaseUrl}/user/${userLoggedIn._id}`,{
   userID:userLoggedIn._id,
-  password:newData.password
+  password:newData.password,
+  profilepic:newData.profilepic
 }).then((res)=>{
   toast({
     status:"success",
@@ -80,8 +80,30 @@ navigate("/")
            <Box  mt="5%" display="flex" justifyContent="space-around">
 
 
-           <Box>
-            <Avatar size="2xl"/></Box>
+           <Box display="grid">
+
+            <Avatar src={newData.profilepic||""} margin="auto" size="2xl"/>
+            {/* <Input
+            mt="1%"
+            css={{
+              "&::-webkit-file-upload-button": {
+                backgroundColor: "rgb(0,120,255)",
+                marginTop: "6px",
+                border: "none",
+                color: "white",
+                borderRadius: "5px",
+              },
+            }}
+            accept="image/png, image/jpeg, image/jpg"
+            
+            type="file"
+            placeholder="Choose a Image"
+          /> */}
+
+          <Input onChange={handleChange} mt="10%" type="url" placeholder='Profile Picture' name="profilepic"  />
+
+            
+            </Box>
 
 
 <Box width="35%" display="grid" gap="30%">

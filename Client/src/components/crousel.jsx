@@ -20,7 +20,8 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,
-  arrows:true
+  arrows:true,
+  dots:true
 };
 
 const categorys = [

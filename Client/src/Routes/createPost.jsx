@@ -24,7 +24,7 @@ const CreatePost = () => {
   const [loading,setloading]=useState(false)
   const LoggedUser=useSelector((state)=>state.User.username)
   const navigate=useNavigate()
-
+useSelector((state)=>console.log(state.User))
 
   function PassedValidationCheck() {
     if (!postData.photo|| !postData.title || !postData.description ||!postData.category) {
