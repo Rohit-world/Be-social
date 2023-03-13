@@ -109,7 +109,7 @@ setloading(false)
             width="400px"
             src={postData.photo|| PreviwPng}
           />
-          {/* <Input
+          <Input
             css={{
               "&::-webkit-file-upload-button": {
                 backgroundColor: "rgb(0,120,255)",
@@ -123,10 +123,10 @@ setloading(false)
             onChange={handleImageChange}
             type="file"
             placeholder="Choose a Image"
-          /> */}
+          />
 
 
-          <Input onChange={handleChange} type="url" placeholder="Image Url" name="photo"/>
+          {/* <Input onChange={handleChange} type="url" placeholder="Image Url" name="photo"/> */}
         </Box>
 
         <Box
