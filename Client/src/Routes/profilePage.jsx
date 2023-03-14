@@ -34,7 +34,7 @@ const ProfilePage = () => {
   }
   function HandleFileUpload(e) {
     setImgFile(e.target.files[0]);
-    covertimageToLink();
+    covertimageToLink()
   }
   async function covertimageToLink() {
     imageUpload(imgFile).then((url) => setProfilePic(url));
