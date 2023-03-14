@@ -14,18 +14,31 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BaseUrl from "../../server.url";
 import PreviwPng from "../assets/preview.png";
+import { imageUpload } from "../js/imageUpload";
 
 
 const CreatePost = () => {
   const [isLargerThan850] = useMediaQuery("(min-width: 850px)");
   const [isSmallerThan850] = useMediaQuery("(max-width: 850px)");
   const Toast = useToast();
-  const [postData, setpostdata] = useState({ title: "", description: "",photo:"",category:"" });
+  const [postData, setpostdata] = useState({ title: "", description: "",photo:"",category:"" })
+  const [imgFile,setImgFile]=useState("")
   const [loading,setloading]=useState(false)
   const LoggedUser=useSelector((state)=>state.User.username)
   const navigate=useNavigate()
-useSelector((state)=>console.log(state.User))
 
+
+
+function HandleFileUpload(e){ 
+  setImgFile(e.target.files[0])
+  covertimageToLink()
+}
+
+async function covertimageToLink(){
+   imageUpload(imgFile).then((url)=>setpostdata({...postData,photo:url}))
+}
+
+console.log(postData)
   function PassedValidationCheck() {
     if (!postData.photo|| !postData.title || !postData.description ||!postData.category) {
       Toast({
@@ -81,6 +94,8 @@ setloading(false)
     }
   }
 
+
+
   // function handleImageChange(e) {
   //   setloading(true)
   //   const file = e.target.files[0];
@@ -120,10 +135,11 @@ setloading(false)
               },
             }}
             accept="image/png, image/jpeg, image/jpeg"
-            onChange={handleImageChange}
+            onChange={HandleFileUpload}
             type="file"
             placeholder="Choose a Image"
           />
+        
 
 
           {/* <Input onChange={handleChange} type="url" placeholder="Image Url" name="photo"/> */}
