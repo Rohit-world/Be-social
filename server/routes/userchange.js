@@ -30,6 +30,34 @@ UserChange.patch("/:id", async (req, resp) => {
 
 
 });
+UserChange.patch("/pic/:id", async (req, resp) => {
+  console.log("trigg")
+  if (req.body.userID === req.params.id) {
+    if (req.body.profilepic) {
+      try {
+        const updateUser = await UserModel.findByIdAndUpdate(
+          req.params.id,
+          {
+            $set: req.body,
+          },
+          {
+            new: true,
+          }
+        );
+  
+        resp.status(200).json(updateUser)
+      } catch (error) {
+        resp.status(401).json("You can't Change the picture");
+      }
+    }
+
+    
+  }
+
+
+});
+
+
 
 UserChange.delete("/:id", async (req, resp) => {
   if (req.body.userID === req.params.id) {

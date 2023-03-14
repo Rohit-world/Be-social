@@ -74,7 +74,7 @@ localStorage.setItem("be-socialuser",null)
               <MenuButton
                 as={IconButton}
                 aria-label="Options"
-                icon={<Avatar name="rohit kumar" />}
+                icon={<Avatar src={user.profilepic} name="rohit kumar" />}
                 borderRadius="full"
                 variant="outline"
               />
