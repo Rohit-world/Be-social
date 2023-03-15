@@ -6,7 +6,7 @@ const PostComponent = ({data}) => {
 
 
     return (
-        <Box display="grid" gap="2%">
+        <Box  display="grid" gap="2%">
 
             <Text  padding="2%" fontSize="3xl" fontWeight="medium" bgColor="gray.100"  >
                 

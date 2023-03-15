@@ -9,6 +9,7 @@ import GridComponent from "../components/grid";
 import { BlogRequest,BlogRequestFail,BlogRequestSuccess } from "../Redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingIndicator from "../components/LoadingIndicator";
+import Footer from "../components/footer";
 
 const Dashboard = () => {
 
@@ -59,6 +60,7 @@ return (
 <Box mt={10} padding="2%" backgroundColor="gray.100" color="green" ><Heading>Blogs/Articles</Heading></Box>
 {Blogs.loading && <LoadingIndicator />}
 {Blogs.Blogs[0] && <GridComponent data={Blogs.Blogs}/>}
+<Footer/>
 </Box>
   );
 };

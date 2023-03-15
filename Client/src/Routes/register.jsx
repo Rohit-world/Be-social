@@ -5,6 +5,7 @@ import { useMediaQuery } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BaseUrl from '../../server.url';
+import Footer from '../components/footer';
 
 
 const Register = () => {
@@ -87,6 +88,7 @@ try {
                 </Box>
             </Box>
 
+            <Footer/>
 
         </Box>
     );

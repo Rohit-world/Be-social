@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BaseUrl from "../../server.url";
+import Footer from "../components/footer";
 import { imageUpload } from "../js/imageUpload";
 import {LoggedIn} from "../Redux/action"
 const ProfilePage = () => {
@@ -144,6 +145,7 @@ const ProfilePage = () => {
             size="2xl"
           />
           <Input
+          mt="20px"
             css={{
               "&::-webkit-file-upload-button": {
                 backgroundColor: "rgb(0,120,255)",
@@ -151,6 +153,7 @@ const ProfilePage = () => {
                 border: "none",
                 color: "white",
                 borderRadius: "5px",
+                
               },
             }}
             accept="image/png, image/jpeg, image/jpeg"
@@ -160,12 +163,12 @@ const ProfilePage = () => {
           />
 
           {/* <Input onChange={handleChange} mt="10%" type="url" placeholder='Profile Picture' name="profilepic"  /> */}
-          <Button onClick={UploadProfilpic} mt="10px" colorScheme="messenger">
+          <Button onClick={UploadProfilpic} mt="20px" colorScheme="messenger">
             Upload
           </Button>
         </Box>
 
-        <Box width="35%" display="grid" gap="30%">
+        <Box width={isLargerThan850 && "35%"} mt={!isLargerThan850 && "80px"} display="grid" gap="20%">
           <Text color="blueviolet" fontSize="xl" fontWeight="bold">
             Change Password
           </Text>
@@ -186,6 +189,7 @@ const ProfilePage = () => {
           </Button>
         </Box>
       </Box>
+      
     </Box>
   );
 };

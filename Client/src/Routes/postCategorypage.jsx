@@ -5,6 +5,7 @@ import axios from "axios";
 import BaseUrl from "../../server.url";
 import GridComponent from "../components/grid";
 import { useSelector } from "react-redux";
+import Footer from "../components/footer";
 
 const PostCategorypage = () => {
   const [Blogs, setBlog] = useState([]);
@@ -69,6 +70,8 @@ const PostCategorypage = () => {
  
   </Box> */}
       {Blogs[0] && <GridComponent data={Blogs} />}
+      
+<Footer/>
     </Box>
   );
 };

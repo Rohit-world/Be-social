@@ -22,7 +22,7 @@ useEffect(() => {
    <Box>
     <Navbar/>
     <AllRoutes />
-    <Footer/>
+   
    </Box>
   )
 }
