@@ -49,4 +49,17 @@ resp.status(500).json(error)
 })
 
 
+UserRoute.get("/:username",async(req,res)=>{
+  const username=req.params.username
+    
+ try {
+    const user=await UserModel.findOne({username})
+    res.status(200).json(user)
+
+ } catch (error) {
+    
+ }
+})
+
+
 module.exports={UserRoute}

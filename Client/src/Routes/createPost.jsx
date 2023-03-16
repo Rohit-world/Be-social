@@ -17,31 +17,40 @@ import PreviwPng from "../assets/preview.png";
 
 import { imageUpload } from "../js/imageUpload";
 
-
 const CreatePost = () => {
   const [isLargerThan850] = useMediaQuery("(min-width: 850px)");
   const [isSmallerThan850] = useMediaQuery("(max-width: 850px)");
   const Toast = useToast();
-  const [postData, setpostdata] = useState({ title: "", description: "",photo:"",category:"" })
-  const [imgFile,setImgFile]=useState("")
-  const [loading,setloading]=useState(false)
-  const LoggedUser=useSelector((state)=>state.User.username)
-  const navigate=useNavigate()
+  const [postData, setpostdata] = useState({
+    title: "",
+    description: "",
+    photo: "",
+    category: "",
+  });
+  const [imgFile, setImgFile] = useState("");
+  const [loading, setloading] = useState(false);
+  const LoggedUser = useSelector((state) => state.User.username);
+  const navigate = useNavigate();
 
+  function HandleFileUpload(e) {
+    setImgFile(e.target.files[0]);
+    covertimageToLink();
+  }
 
+  async function covertimageToLink() {
+    imageUpload(imgFile).then((url) =>
+      setpostdata({ ...postData, photo: url })
+    );
+  }
 
-function HandleFileUpload(e){ 
-  setImgFile(e.target.files[0])
-  covertimageToLink()
-}
-
-async function covertimageToLink(){
-   imageUpload(imgFile).then((url)=>setpostdata({...postData,photo:url}))
-}
-
-console.log(postData)
+  console.log(postData);
   function PassedValidationCheck() {
-    if (!postData.photo|| !postData.title || !postData.description ||!postData.category) {
+    if (
+      !postData.photo ||
+      !postData.title ||
+      !postData.description ||
+      !postData.category
+    ) {
       Toast({
         title: "Please Give all the Details",
         status: "info",
@@ -60,57 +69,40 @@ console.log(postData)
     }
   }
 
-
   async function handleSubmit() {
     if (PassedValidationCheck()) {
-
-        try{
-setloading(true)
-            axios.post(`${BaseUrl}/post`,{
+      try {
+        setloading(true);
+        axios
+          .post(`${BaseUrl}/post`, {
             ...postData,
-            username:LoggedUser,
-            postTime:Date.now(),
-            }).then((res)=>{
-             if(res.data){
+            username: LoggedUser,
+            postTime: Date.now(),
+          })
+          .then((res) => {
+            if (res.data) {
               Toast({
-                title:"Post added Successfully",
-                status:"success",
-                position:"top"
-              })
-             }
-              setloading(false)
-              navigate("/")
-            }).catch((err)=>{
-              console.log("errir",err)
-              setloading(false)
-            })
-
-        }catch(err){
-console.log(err)
-setloading(false)
-        }
-
+                title: "Post added Successfully",
+                status: "success",
+                position: "top",
+              });
+            }
+            setloading(false);
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log("errir", err);
+            setloading(false);
+          });
+      } catch (err) {
+        console.log(err);
+        setloading(false);
+      }
     } else {
       return;
     }
   }
 
-
-
-  // function handleImageChange(e) {
-  //   setloading(true)
-  //   const file = e.target.files[0];
-  //   const reader = new FileReader();
-  //   reader.addEventListener("load", async() => {
-  //     setbase64Image(reader.result);
-  //     resizeImage(base64Image).then((result) => {
-  //      setbase64Image(result)
-  //      setloading(false)
-  //   });
-
-  //   });
-  //   reader.readAsDataURL(file);
-  // }
   function handleChange(e) {
     setpostdata({ ...postData, [e.target.name]: e.target.value });
   }
@@ -118,13 +110,13 @@ setloading(false)
   return (
     <Box pb="5%" minHeight="75vh">
       <Heading color="green.600">Create New Post</Heading>
-      <Box pt="5%" display={isLargerThan850?"flex":"grid"} justifyContent="space-around">
+      <Box
+        pt="5%"
+        display={isLargerThan850 ? "flex" : "grid"}
+        justifyContent="space-around"
+      >
         <Box display="grid" gap={10}>
-          <img
-            
-            width="400px"
-            src={postData.photo|| PreviwPng}
-          />
+          <img width="400px" src={postData.photo || PreviwPng} />
           <Input
             css={{
               "&::-webkit-file-upload-button": {
@@ -140,8 +132,6 @@ setloading(false)
             type="file"
             placeholder="Choose a Image"
           />
-        
-
 
           {/* <Input onChange={handleChange} type="url" placeholder="Image Url" name="photo"/> */}
         </Box>
@@ -153,17 +143,19 @@ setloading(false)
           display="flex"
           flexDirection="column"
         >
-          <Input 
+          <Input
             name="title"
             onChange={handleChange}
             placeholder="Title of the post"
             type="text"
           />
-          <Select  onChange={handleChange} name="category"  mt="10px">
+          <Select onChange={handleChange} name="category" mt="10px">
             <option value="">Select Category</option>
             <option value="photoghraphy">PhotoGraphy</option>
             <option value="wildlife">Wildlife</option>
-            <option value="Artificial Intelligence">Artificial Intelligence</option>
+            <option value="Artificial Intelligence">
+              Artificial Intelligence
+            </option>
             <option value="travelling">Travelling</option>
             <option value="books">Books</option>
             <option value="music">Music</option>
@@ -179,13 +171,16 @@ setloading(false)
             type="text"
           />
 
-          <Button  isLoading={loading} onClick={handleSubmit} mt="10px" colorScheme="messenger">
+          <Button
+            isLoading={loading}
+            onClick={handleSubmit}
+            mt="10px"
+            colorScheme="messenger"
+          >
             Publish
           </Button>
         </Box>
       </Box>
-
-
     </Box>
   );
 };
