@@ -29,7 +29,7 @@
 
 
 
-## [Deployed URL](https://holistic-remedies.netlify.app//)
+## [Deployed URL](https://besocial-r.netlify.app/)
 
 <br/>
 
