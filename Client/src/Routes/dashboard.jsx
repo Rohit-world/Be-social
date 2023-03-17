@@ -33,6 +33,7 @@ return Pages
 
 
   async function GetData() {
+
     dispatch(BlogRequest());
     try {
       axios
@@ -61,6 +62,8 @@ return Pages
         status: "error",
       });
     }
+
+   
   }
 
   useEffect(() => {
@@ -82,12 +85,26 @@ return Pages
       {Blogs.Blogs[0] && <GridComponent data={Blogs.Blogs} />}
 
      <Box color="rgb(22,137,205)" paddingY="40px" display="flex" justifyContent="center"> <ul style={{display:"flex",gap:"1vw"}}>
-      <Button isDisabled={activePage==1}  onClick={()=>setActivePage((prev)=>prev-1)} >Previous</Button>
+      <Button isDisabled={activePage==1} 
+       onClick={()=>{ 
+        setActivePage((prev)=>prev-1)
+      window.scrollTo(0, 400)
+      }} >Previous</Button>
+
+
+
+
        {TotalPageCalulator(totalPostCount,LIMIT).map((pageNo)=>(
-        <Button colorScheme ={activePage==pageNo?"messenger":"gray" } onClick={()=>setActivePage(pageNo)}>{pageNo}</Button>
+        <Button key={pageNo} colorScheme ={activePage==pageNo?"messenger":"gray" }  onClick={()=>{ 
+        setActivePage(pageNo)
+      window.scrollTo(0, 400)
+      }}>{pageNo}</Button>
        ))}
 
-<Button isDisabled={activePage==totalPostCount/LIMIT} onClick={()=>setActivePage((prev)=>prev+1)}>Next</Button>
+<Button isDisabled={activePage==totalPostCount/LIMIT}  onClick={()=>{ 
+        setActivePage((prev)=>prev+1)
+      window.scrollTo(0, 400)
+      }}>Next</Button>
 
 
 

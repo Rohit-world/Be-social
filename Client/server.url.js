@@ -1,2 +1,3 @@
-const BaseUrl="http://localhost:3002"
+const BaseUrl=  "https://repulsive-houndstooth-yak.cyclic.app"
+
 export default BaseUrl
