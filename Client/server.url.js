@@ -1,2 +1,2 @@
-const BaseUrl="https://besocialbackend.onrender.com"
+const BaseUrl="http://localhost:3002"
 export default BaseUrl

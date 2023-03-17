@@ -19,7 +19,7 @@ const UserBlog = () => {
       axios
         .get(`${BaseUrl}/post?user=${username}`)
         .then((res) => {
-          setBlog(res.data);
+          setBlog(res.data.posts);
         })
         .catch((err) => {
           toast({

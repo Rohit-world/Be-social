@@ -80,6 +80,11 @@ PostRoute.get("/:id", async (req, resp) => {
 PostRoute.get("/", async (req, resp) => {
   const username = req.query.user;
   const categoryName = req.query.cat;
+  const page=req.query.page?parseInt(req.query.page):1
+  const size =req.query .size?parseInt(req.query.size):6
+  const skip=(page-1)*size
+
+
   var posts;
   try {
     if (username) {
@@ -87,10 +92,15 @@ PostRoute.get("/", async (req, resp) => {
     } else if (categoryName) {
       posts = await PostModel.find({category: { $in: [categoryName]}}).sort({'postTime': 'desc'})
     }else{
-        posts =await PostModel.find().sort({'postTime': 'desc'})
+
+        posts =await PostModel.find().skip(skip).limit(size).sort({'postTime': 'desc'})
     }
 
-    resp.status(200).json(posts);
+    const totalPosts=await PostModel.countDocuments()
+    resp.status(200).json({
+      posts,
+      totalPosts
+    });
   } catch (error) {
     resp.status(401).json(error);
   }

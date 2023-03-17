@@ -12,25 +12,14 @@ const PostCategorypage = () => {
   const { category } = useParams();
   const LoggedUser = useSelector((state) => state.User.username);
   const toast = useToast();
-  const [sort, setSort] = useState("1");
 
-  function handleSortbyTime(e) {
-    const { value } = e.target;
-    if (value == "old") {
-      setBlog(Blogs.sort((a, b) => a.postTime - b.postTime));
-    } else {
-      setBlog(Blogs.sort((a, b) => b.postTime - a.postTime));
-    }
-
-    console.log(Blogs);
-  }
 
   async function GetData() {
     try {
       axios
         .get(`${BaseUrl}/post?cat=${category}`)
         .then((res) => {
-          setBlog(res.data);
+          setBlog(res.data.posts);
         })
         .catch((err) => {
           toast({
