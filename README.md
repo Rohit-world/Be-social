@@ -9,6 +9,7 @@
 - *CRUD*
 - *Pagination*
 - *Sorting*
+- *Filter by User or Category*
 - *password Hashing*
 - *Responsive*
 
